@@ -1,12 +1,27 @@
 'use strict';
+var herokuTestApp = {
+    initialize: function () {
+        this.bindEvents();
+    },
+    bindEvents: function () {
+        document.addEventListener('deviceready', this.onDeviceReady, true);
+    },
+
+    onDeviceReady: function () {
+        angular.element(document).ready(function () {
+            angular.bootstrap(document);
+        });
+    },
+};
 
 angular.module('herokuTestApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ngRoute'
-])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+]).config(function ($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+}).config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
