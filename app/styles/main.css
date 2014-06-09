@@ -77,3 +77,9 @@ body {
     border-bottom: 0;
   }
 }
+
+
+.test-text {
+    color: red;
+    margin-left: 20px;   
+}
