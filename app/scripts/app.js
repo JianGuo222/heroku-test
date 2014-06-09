@@ -22,6 +22,8 @@ angular.module('herokuTestApp', [
 ]).config(function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 }).config(function ($routeProvider, $locationProvider, $httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
